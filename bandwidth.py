@@ -23,7 +23,7 @@ def meassure_bandwidth():
     global LATENCY_TOTAL, DOWNLOAD_TOTAL, UPLOAD_TOTAL, MEASSUREMENTS
 
     logging.info("Starting meassure...")
-    process = subprocess.run(['bbk_cli','--server=gbg4.bredbandskollen.se', "--quiet"], check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    process = subprocess.run(['./bbk_cli','--server=gbg4.bredbandskollen.se', "--quiet"], check=True, stdout=subprocess.PIPE, universal_newlines=True)
     output = process.stdout
     logging.info("Meassurment output %s" % output.rstrip())
     (latency, download, upload) = map(lambda x: float(x),output.split(" ")[:3])
@@ -53,7 +53,7 @@ def log_avarage():
 
 if __name__ == '__main__':
     logging.basicConfig(
-        filename='bandwidth.log',
+        filename='/opt/log/bandwidth.log',
         level=logging.INFO,
         format='%(asctime)s %(message)s')
     # Start up the server to expose the metrics.
